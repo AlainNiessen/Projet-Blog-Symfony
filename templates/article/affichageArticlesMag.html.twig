@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affichage des articles magiques{% endblock %}
+
+{% block body %}
+
+<h1>Affichage des articles magiques</h1>
+<table class="table-titres table w-auto">
+    <thead class="thead-dark">
+        <tr>
+            <th>Titres</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for val in articles%}
+        <tr>
+            <td><a class="title-link" href="{{ path('affichage_article', {'id': val.id}) }}">{{ val.getTitre() }}</a></td>            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

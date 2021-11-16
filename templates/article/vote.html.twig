@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article Vote{% endblock %}
+
+{% block body%}
+    <section class="info-article">
+        <h1>Détails sur l'article avec ID <span id="id_article">{{ number }}</span></h1>        
+        <h3>Votes: <span id="nombre_votes">{{ votes }}</span></h3>
+        <button id="votes_plus" class="btn btn-outline-dark">+</button>
+        <button id="votes_moins" class="btn btn-outline-dark">-</button>    
+    </section>
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+    <script src="{{ asset('js/vote.js')}}" type="text/javascript"></script>
+{% endblock %}
+

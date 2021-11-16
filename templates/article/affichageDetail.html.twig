@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affichage détail de l'article{% endblock %}
+
+{% block body %}
+
+    {% if article.getContenu() is empty %}
+
+        <section class="affichage-detail-article-const">
+            <h1>{{ article.getTitre() }} coming soon!</h1>
+            <img class="img_construct" src="{{ asset('img/under_construction.jpg')}}" alt="under construction" title="under construction">
+        </section>
+
+    {% else %}
+    
+        <section class="affichage-detail-article">            
+            <section class="detail-article"> 
+                <h1>Détail de l'article {{ article.getId() }}</h1>               
+                <h2>Titre</h2>
+                <p>{{ article.getTitre() }}</p>
+                <h2>Déscription</h2>
+                <p>{{ article.getContenu() }}</p>
+                <h2>Date de création</h2>
+                <p>{{ article.getDateDeCreation()|date('d-M-Y') }}</p> 
+                <h2>Catégorie</h2>
+                <p>{{ article.getCategory().getName() }}</p>
+            </section>                    
+            <section class="form-votes">
+                <h1>Voter pour l'article {{ article.getId() }}</h1>   
+                <form action="{{ path('article_votes', {id: article.id}) }}" method="post">
+                    <div class="form-votes-boutons">
+                        <button class="votes-up btn btn-success" name="direction" value="up"><i class="fas fa-thumbs-up"></i></button>
+                        <button class="votes-down btn btn-danger" name="direction" value="down"><i class="fas fa-thumbs-down"></i></button>
+                    </div>
+                </form>
+            </section>
+            <section>
+                <h1>Résultat de votes</h1>
+                <h3>Nombre total de votes</h3>
+                <p class="votes-result">{{ article.getVotesTotal()}}</p>
+                <h3>Nombre votes up</h3>           
+                <p class="votes-result">{{ article.getVotesUp()}}</p>     
+                <h3>Nombre votes down</h3>   
+                <p class="votes-result">{{ article.getVotesDown()}}</p>             
+                <h3>Score</h3>
+                <p class="votes-result {{ class }}">{{ article.votesString}}</p>                
+            </section>                        
+        </section>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts%}
+    {{ parent() }}
+    <script src="{{ asset('js/vote.js')}}" type="text/javascript"></script>
+{% endblock %}

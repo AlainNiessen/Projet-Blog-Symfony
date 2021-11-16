@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Exemples Controller - Vue{% endblock %}
+
+{% block body %}
+<section class="affichage-exercices">
+    <h1>Exemples</h1>
+    <p>Création d'un controlleur "ExempleController" et traitement de données pour gérer la Vue (préparation dans le controlleur et traitement en Twig)</p>
+    <section class="exercice-unit">
+        <h2>Exercice 1</h2>
+        <h3>Un tableau avec des nombres aléatoires ceux ci seront affichés de manière de séparer le nombre paires de nombres impaires</h3>
+        <h4>Nombres de base</h4>
+        <p>{{tabAleatoire|join(', ') }}
+        {% for val in tabAleatoire %}
+            {% if val is divisible by(2) %}
+                {% set tabPair = tabPair|merge([val]) %}
+            {% else %}
+                {% set tabImpair = tabImpair|merge([val]) %}
+            {% endif %}
+        {% endfor %}
+        <h4>Nombres pairs</h4>
+        <p>{{tabPair|join(', ') }}
+        <h4>Nombres impairs</h4>
+        <p>{{tabImpair|join(', ') }}
+    </section>
+    <section class="exercice-unit">
+        <h2>Exercice 2</h2>
+        <h3>Afficher le premier élément d'un tableau de string</h3>
+        <h4>Strings de base</h4>
+        <p>{{tabString|join(', ') }}
+        <h4>Premier élément</h4>
+        <p>{{tabString|first}}
+    </section>
+    <section class="exercice-unit">
+        <h2>Exercice 3</h2>
+        <h3>Afficher chaque élément de votre tableau de string avec la première lettre en majuscule</h3>
+        {% for val in tabString%}
+            <p>{{ val|capitalize }}</p>
+        {% endfor %}
+    </section>
+    <section class="exercice-unit">
+        <h2>Exercice 4</h2>
+        <h3>Afficher le plus grand nombre de votre tableau de nombre</h3>
+        <h4>Nombres de base</h4>
+        {{ tabAleatoire|join(', ') }}
+        <h4>Le plus grand nombre</h4>
+        {{ max(tabAleatoire) }}
+    </section>
+    <section class="exercice-unit">
+        <h2>Exercice 5<h2>
+        <h3>Afficher aléatoirement une des valeurs de votre tableau</h3>
+        <h4>Nombres de base</h4>
+        {{ tabAleatoire|join(', ') }}
+        <h4>Nombre aléatoire</h4>
+    {{ random(tabAleatoire) }}
+    </section>
+    <section class="exercice-unit">
+        <h2>Exercice 6</h2>
+        <h3>Envoyer une date et faire un affichage différent si la date est supérieure ou inférieure à celle d'aujourd'hui</h3>
+        <h4>Date aléatoire</h4>
+        <p>{{ dateAleatoire|date("Y-m-d") }}
+        <h4>Aujourd'hui</h4>
+        <p>{{ "now"|date("Y-m-d") }}</p>
+        <h4>Conclusion</h4>
+        {% if dateAleatoire|date("Y-m-d") < "now"|date("Y-m-d") %}
+            <p>La date aléatoire se trouve dans le passé</p>
+        {% elseif dateAleatoire|date("Y-m-d") > "now"|date("Y-m-d") %}
+            <p>La date aléatoire se trouve dans le futur</p>
+        {% elseif dateAleatoire|date("Y-m-d") == "now"|date("Y-m-d") %}
+            <p>Bingo!!!!</p>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<section class="article-detail-link">
+    <h1>Voter pour un article</h1>
+    <a class="link-article" href="{{ path('article_vote', {number: '1'}) }}">Lien vers l'article 1</a>
+    <a class="link-article" href="{{ path('article_vote', {number: '2'}) }}">Lien vers l'article 2</a>
+    <a class="link-article" href="{{ path('article_vote', {number: '3'}) }}">Lien vers l'article 3</a>
+</section>
+<section class="article-detail-link">
+    <h1>Tous les articles "magiques"</h1>
+    <a class="link-article" href="{{ path('affichage_article_magique') }}">Les articles magiques</a>
+</section>
+<section class="article-detail-link">
+    <h1>Les articles par année</h1>
+    <a class="link-article" href="{{ path('annee', {annee: '2015'}) }}">2015</a>
+    <a class="link-article" href="{{ path('annee', {annee: '2018'}) }}">2018</a>
+    <a class="link-article" href="{{ path('annee', {annee: '2021'}) }}">2021</a>
+</section>
+{% endblock %}

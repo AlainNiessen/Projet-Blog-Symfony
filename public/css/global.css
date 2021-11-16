@@ -1,0 +1,233 @@
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+
+}
+
+body {
+    width: 100%;
+    margin-top: 3rem;
+}
+
+h1, h2, h3, h4, p {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    
+}
+
+h3 {
+    font-size: 1.3rem;
+    
+}
+
+h4 {
+    font-size: 1.1rem;
+    
+}
+
+header {
+    background-color: white;
+    height: 3rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100%;
+    border-bottom: 0.1rem solid black;
+}
+
+footer {
+    background-color: white;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 0.1rem solid black;
+}
+
+/*menu*/
+.header-logo {
+    padding-left: 1rem;
+    font-size: 2rem;
+}
+
+.header-logo a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+
+}
+.header-nav-menu {
+    padding-right: 1rem;
+}
+.header-nav-menu nav ul li{
+    list-style: none;
+    display: inline-block;
+}
+.header-nav-menu nav ul li a{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+    display: block;
+    padding: .3rem .5rem;
+    border: 0.1rem solid black;
+    border-radius: 0.2rem;
+}
+.header-nav-menu nav ul li a:hover{
+    color: white;
+    background-color: black;
+    border: 0.1rem solid white;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+}
+
+/*Exercices d'affichage*/
+
+.affichage-exercices {
+    width: 30rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.affichage-exercices h1 {
+    margin: 5rem auto 1rem auto;
+}
+
+
+.exercice-unit {
+    border: 0.1rem solid black;
+    border-radius: 0.3rem;
+    margin-bottom: 2rem;
+    padding: .5rem;
+}
+
+/*Exercice lien vers un article*/
+
+.article-detail-link {
+    width: 30rem;
+    margin: 0 auto;
+    text-align: center;  
+}
+
+.article-detail-link h1 {
+    margin-top: 5rem;
+}
+
+.link-article {
+    width: 15rem;
+    margin: 0 auto 1rem auto;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+    display: block;
+    padding: .3rem 0;
+    border: 0.1rem solid black;
+    border-radius: 0.2rem;
+}
+.link-article:hover {    
+    color: white;
+    background-color: black;
+    border: 0.1rem solid white;
+}
+
+/*Exercice sur les votes*/
+.info-article {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.info-article h1 {
+    margin-top: 5rem;
+}
+
+/*all titres site*/
+.table-titres {
+    width: 20rem;
+    margin: 0 auto;
+}
+
+.table-titres thead tr th, .tables-titres thead tr td{
+    text-align: center;    
+}
+
+.title-link {
+    width: 70%;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 auto;
+    color: black;
+    display: block;
+    padding: .3rem .5rem;
+    border: 0.1rem solid black;
+    border-radius: 0.2rem;
+}
+.title-link:hover {
+    color: white;
+    background-color: black;
+    border: 0.1rem solid white;
+}
+
+/*affichage détail article*/
+.affichage-detail-article-const {
+    text-align: center;
+}
+.affichage-detail-article-const h1 {
+    margin-top: 5rem;
+}
+.affichage-detail-article {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.affichage-detail-article h1 {
+    margin-top: 5rem;
+}
+
+/*img under construction*/
+.img_construct {
+    width: 20rem;
+}
+
+/*formulaire de vote*/
+.votes-result {
+    font-size: 1.1rem;
+}
+
+.votes-up, .votes-down {
+    margin: .5rem;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.orange {
+    color: orange;
+}
+
+
