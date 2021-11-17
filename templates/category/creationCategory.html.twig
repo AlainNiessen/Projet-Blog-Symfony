@@ -6,17 +6,13 @@
     <h1 class="titre_creation">Création d'une nouvelle catégorie</h1>
     {# Form start#}
     {{ form_start(form) }}
-    {# affichage message d'erreur #}
-    <div class="my-custom-class-for-errors">
-        {{ form_errors(form) }}
-    </div>
     {# création des champs de formulaire#}
     <div class="form-section">
-        {{ form_label(form.name, 'Name', {'label_attr': {'class': 'label-style'}}) }}
-        <p>{{ form_help(form.name) }}</p>
-        <div class="form-error">
-            {{ form_errors(form.name) }}
+        {# contrôle si il y a des erreurs, si oui => ajout de la class "error" pour affichage en rouge#}
+        <div {% if form.name.vars.errors|length > 0 %}class="error"{% endif %}>
+            {{ form_label(form.name, 'Name', {'label_attr': {'class': 'label-style'}}) }}
         </div>
+        <p>{{ form_help(form.name) }}</p>
         <div class="form-field">
             {{ form_widget(form.name) }}
         </div>                    

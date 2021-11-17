@@ -6,40 +6,34 @@
     <h1 class="titre_creation">Création d'un nouveau article</h1>
     {# Form start#}
     {{ form_start(form) }}
-    {# affichage message d'erreur #}
-    <div class="my-custom-class-for-errors">
-        {{ form_errors(form) }}
-    </div>
+    
     {# création des champs de formulaire#}
     <div class="form-section">
-        {{ form_label(form.titre, 'Titre', {'label_attr': {'class': 'label-style'}}) }}
-        <p>{{ form_help(form.titre) }}</p>
-        <div class="form-error">
-            {{ form_errors(form.titre) }}
+        {# contrôle si il y a des erreurs, si oui => ajout de la class "error" pour affichage en rouge#}
+        <div {% if form.titre.vars.errors|length > 0 %}class="error"{% endif %}>
+            {{ form_label(form.titre, 'Titre', {'label_attr': {'class': 'label-style'}}) }}
         </div>
+        <p>{{ form_help(form.titre) }}</p>
         <div class="form-field">
             {{ form_widget(form.titre) }}
         </div>                    
-    </div>
-    
+    </div>    
     
     <div class="form-section">
-        {{ form_label(form.contenu, 'Contenu', {'label_attr': {'class': 'label-style'}}) }}
-        <p>{{ form_help(form.contenu) }}</p>
-        <div class="form-error">
-            {{ form_errors(form.contenu) }}
+        <div {% if form.contenu.vars.errors|length > 0 %}class="error"{% endif %}>
+            {{ form_label(form.contenu, 'Contenu', {'label_attr': {'class': 'label-style'}}) }}
         </div>
+        <p>{{ form_help(form.contenu) }}</p>
         <div class="form-field">
             {{ form_widget(form.contenu) }}
         </div>       
     </div>
 
     <div class="form-section">
-        {{ form_label(form.category,'Categorie', {'attr': {'label_class': 'label-style'}}) }}
-        <p>{{ form_help(form.category) }}</p>   
-        <div class="form-error">
-            {{ form_errors(form.category) }}
+        <div {% if form.category.vars.errors|length > 0 %}class="error"{% endif %}>
+            {{ form_label(form.category,'Categorie', {'attr': {'label_class': 'label-style'}}) }}
         </div>
+        <p>{{ form_help(form.category) }}</p>   
         <div class="form-field">
             {{ form_widget(form.category) }}
         </div>             

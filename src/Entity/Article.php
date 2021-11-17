@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -20,11 +21,29 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Ce champs ne peut pas rester vide"
+     * )
+     * @Assert\Length(
+     *      min=2,
+     *      max=255,
+     *      minMessage="Le titre d'un article doit comporter au moins {{ limit }} caractères",
+     *      maxMessage="Let titre d'un article doit comporter au plus {{ limit }} caractères"
+     * )
      */
     private $titre;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *      message = "Ce champs ne peut pas rester vide"
+     * )
+     * @Assert\Length(
+     *      min=2,
+     *      max=255,
+     *      minMessage="Le titre d'un article doit comporter au moins {{ limit }} caractères",
+     *      maxMessage="Let titre d'un article doit comporter au plus {{ limit }} caractères"
+     * )
      */
     private $contenu;
 
@@ -56,6 +75,10 @@ class Article
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(
+     *      message = "Ce champs ne peut pas rester vide"
+     * )
+     *
      */
     private $category;
 

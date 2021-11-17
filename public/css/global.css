@@ -259,6 +259,9 @@ footer {
 .form-submit {
     text-align: center;
 }
+.error {
+    color: red;
+}
 
 /*all categories*/
 .list-element {
