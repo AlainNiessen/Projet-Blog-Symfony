@@ -14,6 +14,12 @@
     <a class="link-article" href="{{ path('affichage_article_magique') }}">Les articles magiques</a>
 </section>
 <section class="article-detail-link">
+    <h1>Les catégories</h1>
+    {% for val in categories%}
+        <a class="link-article" href="{{ path('article_categorie', {'id': val.id}) }}">{{ val.name }}</a>            
+    {% endfor %}
+</section>
+<section class="article-detail-link">
     <h1>Les articles par année</h1>
     <a class="link-article" href="{{ path('annee', {annee: '2015'}) }}">2015</a>
     <a class="link-article" href="{{ path('annee', {annee: '2018'}) }}">2018</a>

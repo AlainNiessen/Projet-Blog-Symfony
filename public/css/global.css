@@ -58,6 +58,10 @@ footer {
     border-top: 0.1rem solid black;
 }
 
+.titre_result {
+    margin-top: 5rem;
+}
+
 /*menu*/
 .header-logo {
     padding-left: 1rem;
@@ -160,6 +164,10 @@ footer {
 }
 
 /*all titres site*/
+.titre_creation {
+    margin-top: 5rem;
+}
+
 .table-titres {
     width: 20rem;
     margin: 0 auto;
@@ -185,6 +193,9 @@ footer {
     color: white;
     background-color: black;
     border: 0.1rem solid white;
+}
+.link_creation {
+    width: 40%;
 }
 
 /*affichage détail article*/
@@ -230,4 +241,21 @@ footer {
     color: orange;
 }
 
+/*formulaire de création*/
+.label-style {
+    font-size: 1rem;
+   
+}
+.form-section {
+    text-align: left;
+    width: 90%;
+    margin: 0 auto 3rem auto;
+}
 
+.form-section p{
+    text-align: left;
+    margin: 0;
+}
+.form-submit {
+    text-align: center;
+}

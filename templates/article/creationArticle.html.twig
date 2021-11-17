@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article Création{% endblock %}
+
+{% block body%}
+    <h1 class="titre_creation">Création d'un nouveau article</h1>
+    {# Form start#}
+    {{ form_start(form) }}
+    {# affichage message d'erreur #}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+    {# création des champs de formulaire#}
+    <div class="form-section">
+        {{ form_label(form.titre, 'Titre', {'label_attr': {'class': 'label-style'}}) }}
+        <p>{{ form_help(form.titre) }}</p>
+        <div class="form-error">
+            {{ form_errors(form.titre) }}
+        </div>
+        <div class="form-field">
+            {{ form_widget(form.titre) }}
+        </div>                    
+    </div>
+    
+    
+    <div class="form-section">
+        {{ form_label(form.contenu, 'Contenu', {'label_attr': {'class': 'label-style'}}) }}
+        <p>{{ form_help(form.contenu) }}</p>
+        <div class="form-error">
+            {{ form_errors(form.contenu) }}
+        </div>
+        <div class="form-field">
+            {{ form_widget(form.contenu) }}
+        </div>       
+    </div>
+
+    <div class="form-section">
+        {{ form_label(form.category,'Categorie', {'attr': {'label_class': 'label-style'}}) }}
+        <p>{{ form_help(form.category) }}</p>   
+        <div class="form-error">
+            {{ form_errors(form.category) }}
+        </div>
+        <div class="form-field">
+            {{ form_widget(form.category) }}
+        </div>             
+    </div>
+
+    <div class="form-submit">
+        {{ form_row(form.submit) }}
+    </div>
+
+    
+    {{ form_end(form) }}
+{% endblock %}

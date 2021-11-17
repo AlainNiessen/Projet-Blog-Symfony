@@ -7,17 +7,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
-//crétaion d'un article aléatoire et insértion dans la base de données
 use DateTime;
 use App\Entity\Article;
+use App\Entity\Category;
+use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 
 class ArticleController extends AbstractController
 {
-    //définition première route => affichage de touts les articles de la base de données
+    //définition route 1 => affichage de touts les articles de la base de données
     /**
      * @Route("/article", name="article")
      */
@@ -33,7 +33,7 @@ class ArticleController extends AbstractController
         ]);
     }
     
-    //définition deuxième route => choix de article pour voter
+    //définition route 2 => choix de article pour voter
     /**
      * @Route("/article/vote/{number}", name="article_vote")
      */
@@ -45,7 +45,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    //définition troisième route + return JSON
+    //définition route 3 => return JSON
     /**
      * @Route("article/actionVote", name="vote")
      */
@@ -58,36 +58,43 @@ class ArticleController extends AbstractController
     
     }
 
-    //définition quatième route => creation article et insertion BD
+    //définition route 4 => creation article et insertion BD
     /**
      * @Route("article/creation", name="article_creation")
      */
     public function indexArticleCreate(EntityManagerInterface $entityManager): Response {
+
         //création objet article
         $article = new Article();
         //création date de création
-        $dateCreation = new DateTime('2021-03-01');
-        $dateCreationString = $dateCreation -> format('Y-m-d');
-        //Set valeurs article      
-        $article -> setTitre('Terra500');
-        $article -> setContenu('');
-        $article -> setDateDeCreation($dateCreation);
+        $article -> setDateDeCreation(new DateTime());
+        //string pour affichage
+        $dateCreationString = $article -> getDateDeCreation() -> format('Y-m-d');
 
-        //préparation de la requête insertion de l'article créé
-        $entityManager -> persist($article);
-        //execution
-        $entityManager -> flush();
+        //form
+        //création objet form
+        $form = $this -> createForm(ArticleType::class, $article);
 
-        $message = "Insertion faite";
+        return $this->render('article/creationArticle.html.twig', [
+            'form' => $form->createView()
+            ]);
+        
 
-        return $this->render('article/creation.html.twig', [
-            'message' => $message, 
-            'article' => $article,
-            'date' => $dateCreationString           
-        ]);
+    //     //préparation de la requête insertion de l'article créé
+    //     $entityManager -> persist($article);
+    //     //execution
+    //     $entityManager -> flush();
+
+    //     $message = "Insertion faite";
+
+    //     return $this->render('article/creation.html.twig', [
+    //         'message' => $message, 
+    //         'article' => $article,
+    //         'date' => $dateCreationString           
+    //     ]);
     }
 
-    //définition septième route => récupération des articles par année
+    //définition route 5 => récupération des articles par année
     /**
      * @route("article/annee/{annee}", name="annee")
      */
@@ -103,7 +110,7 @@ class ArticleController extends AbstractController
     }
 
 
-    //definition cinquième route => récupération des articles qui contiennent le mot "magique" dans leur contenu
+    //definition route 6 => récupération des articles qui contiennent le mot "magique" dans leur contenu
     /**
      * @route("article/content", name="affichage_article_magique")
      */
@@ -117,7 +124,7 @@ class ArticleController extends AbstractController
     }
 
     
-    //définition sixième route => récupération des détails via une requête automatique (passer l'entity article comme paramétre)
+    //définition route 7 => récupération des détails via une requête automatique (passer l'entity article comme paramétre)
     //EntityManager est appelé automatiquement! => pas besoin de l'appeler
     //ATTENTION: c'est un raccourci pour des requêtes simples
     /**
@@ -149,7 +156,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    //définition septième route => votes
+    //définition route 8 => votes
     /**
      * @route("article/votes/{id}", name="article_votes", methods="POST")
      */
@@ -186,5 +193,22 @@ class ArticleController extends AbstractController
             'article' => $article,
             'class' => $class        
         ]);
-    }   
+    }  
+    
+    //définition route 9 => affichage des articles par catégories
+    /**
+     * @route("article/category/{id}", name="article_categorie")
+     */
+    public function requeteParCategorie(Category $category): Response
+    {
+        $articles = $category -> getArticles();
+
+        return $this->render('article/affichageArticlesCategorie.html.twig', [
+            'articles' => $articles,
+            'categorie' => $category                    
+        ]);
+    }
+
+    
+
 }
