@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+<h1 class="titre_creation">Création nouvelle categorie</h1>
+<a class="title-link link_creation" href="{{ path('categorie_creation') }}">Nouvelle categorie</a>
+<h1>Affichage de toutes les catégories</h1>
+<table class="table-titres table w-auto">
+    <thead class="thead-dark">
+        <tr>
+            <th>Titres</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for val in categories%}
+        <tr>
+            <td class="list-element">{{ val.getName() }}</td>        
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

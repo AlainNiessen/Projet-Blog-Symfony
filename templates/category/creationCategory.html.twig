@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie Création{% endblock %}
+
+{% block body%}
+    <h1 class="titre_creation">Création d'une nouvelle catégorie</h1>
+    {# Form start#}
+    {{ form_start(form) }}
+    {# affichage message d'erreur #}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+    {# création des champs de formulaire#}
+    <div class="form-section">
+        {{ form_label(form.name, 'Name', {'label_attr': {'class': 'label-style'}}) }}
+        <p>{{ form_help(form.name) }}</p>
+        <div class="form-error">
+            {{ form_errors(form.name) }}
+        </div>
+        <div class="form-field">
+            {{ form_widget(form.name) }}
+        </div>                    
+    </div>
+
+    <div class="form-submit">
+        {{ form_row(form.submit) }}
+    </div>    
+    {{ form_end(form) }}
+{% endblock %}

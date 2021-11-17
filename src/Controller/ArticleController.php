@@ -62,7 +62,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("article/creation", name="article_creation")
      */
-    public function indexArticleCreate(EntityManagerInterface $entityManager): Response {
+    public function indexArticleCreate(Request $request): Response {
 
         //création objet article
         $article = new Article();
@@ -74,24 +74,24 @@ class ArticleController extends AbstractController
         //form
         //création objet form
         $form = $this -> createForm(ArticleType::class, $article);
+        $form -> handleRequest($request);
+        //si le form est submit et validé => récupération de données rentrée dans la variable $article
+        if($form -> isSubmitted() && $form -> isValid()) {
+            $article = $form -> getData();
+            
+            // insértion dans la base de données
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($article);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('affichage_article', [
+                'id' => $article->getId()
+                ]);
+        }
 
         return $this->render('article/creationArticle.html.twig', [
             'form' => $form->createView()
             ]);
-        
-
-    //     //préparation de la requête insertion de l'article créé
-    //     $entityManager -> persist($article);
-    //     //execution
-    //     $entityManager -> flush();
-
-    //     $message = "Insertion faite";
-
-    //     return $this->render('article/creation.html.twig', [
-    //         'message' => $message, 
-    //         'article' => $article,
-    //         'date' => $dateCreationString           
-    //     ]);
     }
 
     //définition route 5 => récupération des articles par année
