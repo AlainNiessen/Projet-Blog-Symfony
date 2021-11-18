@@ -28,8 +28,8 @@ class Category
      * @Assert\Length(
      *      min=3,
      *      max=255,
-     *      minMessage="Le titre d'un article doit comporter au moins {{ limit }} caractères",
-     *      maxMessage="Let titre d'un article doit comporter au plus {{ limit }} caractères"
+     *      minMessage="Le nom d'une catégorie doit comporter au moins {{ limit }} caractères",
+     *      maxMessage="Le nom d'une catégorie doit comporter au plus {{ limit }} caractères"
      * )
      */
     private $name;
