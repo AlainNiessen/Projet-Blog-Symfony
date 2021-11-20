@@ -35,19 +35,28 @@
                 <div class="header-logo">
                     <a href="#" class="header-logo-placeholder">Symfony Blog Project</a>
                 </div>
-                <div class="header-nav-menu">                                      
+                {# si utilisateur est connécté => affichage d'un bonjour + son username#}
+                {% if app.user %}
+                    <span class="username_welcome">Bonjour {{ app.user.username }}</span>
+                {% endif %}  
+                <div class="header-nav-menu">                                                               
                     <nav>
                         <ul>
                             <li><a href="{{path('home')}}">home</a></li>
                             <li><a href="{{path('exemples')}}">exemples</a></li>
                             <li><a href="{{path('article')}}">articles</a></li>
                             <li><a href="{{path('categorie')}}">categories</a></li>
-                            <li><a href="#">contact</a></li>                        
+                            {# si utilisateur est connecté => changement du bouton login vers logout#}                            
+                            {% if app.user %} 
+                                <li><a href="{{path('app_logout')}}">Logout</a></li> 
+                            {% else %} 
+                                <li><a href="{{path('app_login')}}">Login</a></li> 
+                            {% endif %}                     
                         </ul>
-                    </nav>
+                    </nav>                
                 </div>
             </div>
-        </header>
+        </header> 
         {% block body %}{% endblock %}
     </body>
     <footer class="footer">

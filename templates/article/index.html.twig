@@ -5,7 +5,8 @@
 
 {% block body %}
 <h1 class="titre_creation">Création nouveau article</h1>
-<a class="title-link link_creation" href="{{ path('article_creation') }}">Nouveau article</a>
+{# vérification si l'utilisateur est connecté => si oui => création de l'article possible, sinon => form de login#}
+<a class="title-link link_creation" {% if app.user %} href="{{ path('article_creation') }}" {% else %} href="{{ path('app_login') }}" {% endif %}>Nouveau article</a>
 <h1>Affichage de tous les articles</h1>
 <table class="table-titres table w-auto">
     <thead class="thead-dark">
@@ -17,7 +18,8 @@
     <tbody>
         {% for val in articles%}
         <tr>
-            <td><a class="title-link" href="{{ path('affichage_article', {'id': val.id}) }}">{{ val.getTitre() }}</a></td> 
+            {# vérification si l'utilisateur est connecté => si oui => affichage de détail, sinon => form de login#}
+            <td><a class="title-link" {% if app.user %} href="{{ path('affichage_article', {'id': val.id}) }}" {% else %} href="{{ path('app_login') }}" {% endif %}>{{ val.getTitre() }}</a></td> 
             <td><p>{{ val.getVotesTotal() }}</p></td>           
         </tr>
         {% endfor %}
